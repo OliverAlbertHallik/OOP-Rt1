@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Peaklass {
     public static void main(String[] args) {
@@ -9,11 +10,13 @@ public class Peaklass {
         int pileteidKokku = juhuslik.nextInt(30,151);
         Müük müük = new Müük(pileteidKokku); // Loob piletite müügi, milles alguses on etteantud juhuslik arv pileteid.
         System.out.println("Pileteid on kokku " + pileteidKokku);
-        //System.out.println(müük.getPiletidMüügil());
         int ostusoov = 0;
+        Scanner scan = new Scanner(System.in);
         do {
-
-        } while (müük.ostuKatse(ostusoov));
+            System.out.print("Mitu piletit soovite osta?\nSisestage täisarv: ");
+            ostusoov = scan.nextInt();
+        } while (müük.ostuKatse(ostusoov)); // Enne küsida kasutajalt, mitu piletit soovitakse osta, siis tsükli jätkamise tingimus sõltub, kas pileteid küsiti rohkem, kui vabu kohti järel on.
         System.out.println("Küsiti rohkem pileteid, kui vabu kohti jäänud on.");
+        System.out.println("Pileteid jäi üle " + müük.getPiletidMüügil().size() + ".");
     }
 }

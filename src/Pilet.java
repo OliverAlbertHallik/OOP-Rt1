@@ -12,7 +12,7 @@ public class Pilet {
     }
 
     public void ostaPilet() {
-        if (ostetud)
+        if (ostetud) // Kontroll, et programmi vea tagajärjel ei müüdaks sama piletit uuesti.
             throw new RuntimeException("Viga pileti ostmisel: Pilet on juba varem ostetud");
         ostetud = true;
     }
