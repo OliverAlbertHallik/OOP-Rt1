@@ -9,7 +9,7 @@ public class Müük {
 
     public Müük(int n) { // Loob uue piletite müügi, kus on alguses n piletit kohtadele 1 kuni n.
         this.piletidMüügil = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) { // Igal piletil on unikaalne kohanumber.
             piletidMüügil.add(new Pilet(i));
         }
     }
@@ -38,33 +38,35 @@ public class Müük {
 
         System.out.print("\nOstmiseks pakutavad piletid:\n[");
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n-1; i++) { // Panna kokku sõne andmed piletite kohtadest StringBuilder isendis.
             sb.append(pakutavad.get(i).getKoht());
-            sb.append(',');
+            sb.append(','); // Ei ole veel viimane, saab lisada ','.
         }
-        sb.append(pakutavad.getLast().getKoht());
-        sb.append(']');
+        sb.append(pakutavad.getLast().getKoht()); // Meetodi alguses olevate kontrollide tõttu saab eeldada, et vähemalt 1 pilet on kindlasti pakutavate hulgas.
+        sb.append(']'); // On viimane, saab lisada ']'.
         System.out.println(sb); // Väljastada ekraanile StringBuilder isendi sisu.
 
-        System.out.print("Kas kinnitada piletite ost? (J/e): ");
+        System.out.print("Kas kinnitada piletite ost? (J/e): "); // Suure tähega "J" on vaikimisi valik "Jah".
         Scanner scan = new Scanner(System.in);
-        String kinnitus = scan.next().toLowerCase();
+        String kinnitus = scan.next().toLowerCase(); // Väiketähtedeks, et rohkem variante "e" ehk "ei" jaoks sobiksid.
         if (kinnitus.equals("e") || kinnitus.equals("ei")) {
             System.out.println("Ostmine tühistatud.\n");
             return true; // Lõpeta see katse ja jätka peaklassis.
         }
-        System.out.println("Piletite ostmine...");
+        System.out.println("Piletite ostmine..."); // Ostmise protsess algab.
         for (Pilet pilet : pakutavad) {
             pilet.ostaPilet(); // Lisa piletile kontrolliks märge, et see on ostetud.
             piletidMüügil.remove(pilet); // Eemalda ostetud pilet müüdavate nimekirjast.
         }
-        System.out.print("Piletid ostetud.\nJärel on ");
+        System.out.print("Piletid ostetud.\nJärel on "); // Ostmise protsess on lõppenud.
         System.out.print(piletidMüügil.size());
         System.out.println(" piletit.\n"); // Kaks reavahetust korraga, vahele tühi rida.
         return true;
     }
 
     public List<Pilet> getPiletidMüügil() {
-        return piletidMüügil;
+        List<Pilet> piletidKoopia = new ArrayList<>();
+        piletidKoopia.addAll(piletidMüügil);
+        return piletidKoopia; // Tagastab koopia, et mitte lekitada viita, mis võimaldaks piletite nimekirja muuta.
     }
 }

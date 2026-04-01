@@ -4,11 +4,11 @@ public class Pilet {
     private boolean ostetud;
 
     public Pilet(int koht) {
-        this.koht = koht;
+        this.koht = koht; // Konstruktor pileti loomiseks, määrab sellele vastava koha bussis.
     }
 
     public int getKoht() {
-        return koht;
+        return koht; // Millisele kohale bussis pilet vastab.
     }
 
     public void ostaPilet() {
